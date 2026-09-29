@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS sistema_alunos DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE sistema_alunos;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS alunos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    idade INT NOT NULL,
+    curso VARCHAR(100) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO usuarios (nome, email, senha)
+VALUES ('Administrador', 'admin@sistema.com', '$2y$12$pRqDWz6koYTiA9CzJ.0b/O/TLcgSrz2AWRYVTUT8JroOk1so5Iw3.')
+ON DUPLICATE KEY UPDATE email = email;
